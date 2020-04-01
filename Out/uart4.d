@@ -1,10 +1,11 @@
 .\out\uart4.o: uart4.c
 .\out\uart4.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
 .\out\uart4.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdbool.h
+.\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_types.h
+.\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_sysctl.h
 .\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_gpio.h
 .\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_memmap.h
 .\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_ints.h
-.\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_types.h
 .\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\inc/hw_uart.h
 .\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\driverlib/sysctl.h
 .\out\uart4.o: .\ti\TivaWare_C_Series-2.1.4.178\driverlib/gpio.h

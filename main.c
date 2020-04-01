@@ -47,6 +47,7 @@ extern void vPoll(void);
 extern void vSysTickConfig(void);
 extern void vCANConfig(void);
 volatile unsigned char ucWDT;
+extern void vUART4Config(void);
 
 void vWDTHandler(void)
 { 
@@ -68,7 +69,7 @@ void vWDTConfig(void)
 {
    SysCtlPeripheralEnable(SYSCTL_PERIPH_WDOG0);
    IntEnable(INT_WATCHDOG);
-   WatchdogReloadSet(WATCHDOG0_BASE, SysCtlClockGet());
+   WatchdogReloadSet(WATCHDOG0_BASE, 50000000);
    WatchdogResetEnable(WATCHDOG0_BASE);
    WatchdogEnable(WATCHDOG0_BASE);
 }
@@ -125,4 +126,5 @@ void vHardwareConfig(void)
 	SysTickEnable();
 	vWDTConfig();
 	IntMasterEnable();
+	
 } 

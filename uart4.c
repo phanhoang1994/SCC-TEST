@@ -12,10 +12,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "inc/hw_types.h"
+#include "inc/hw_sysctl.h"
 #include "inc/hw_gpio.h"
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
-#include "inc/hw_types.h"
 #include "inc/hw_uart.h"
 
 #include "driverlib/sysctl.h"
@@ -24,6 +25,7 @@
 #include "driverlib/uart.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/rom.h"
+
 
 #include "uart4.h"
 #include "global.h"
@@ -44,32 +46,32 @@ unsigned char ucUART4IntervalTx;
 
 void vUART4Config(void)
 {
-	// Enable the peripherals used by the application.
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
-	GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_6);
-	GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_6, GPIO_PIN_6);
-    	
-	// Thiet lap thong so cho Port UART1 - giao tiep voi module GSM-SIM900
+ 	// Thiet lap thong so cho Port UART4 - giao tiep voi inverter
 	// Toc do baud 11520, 8 bit, 1 stop, no parity
-   SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC); 
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART4);	
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC); 
 	
+ 	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART4);	
 	GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
-	GPIOPinConfigure(GPIO_PC5_U4TX);
+	
 	GPIOPinConfigure(GPIO_PC4_U4RX);
+	GPIOPinConfigure(GPIO_PC5_U4TX);
+
 	HWREG(GPIO_PORTC_BASE + GPIO_O_AMSEL) &= ~0x30;
-
-
+	
 	UARTConfigSetExpClk(UART4_BASE, SysCtlClockGet(), 9600,
                        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-                        UART_CONFIG_PAR_NONE));
+                        UART_CONFIG_PAR_EVEN));
+                           	
+	#if(DEBUG_VIEW==1)
+		#warning "UART4 baurate is 19200, 8bit, 1stop, even parity"
+	#endif
 
 	// Enable received interrupt and receive time out interrupt
-	UARTEnable(UART4_BASE);
   IntEnable(INT_UART4_TM4C123);
   UARTIntEnable(UART4_BASE, UART_INT_RX | UART_INT_RT | UART_INT_TX);	// Interrupt receive and  timeout			   
 	UARTFIFOLevelSet(UART4_BASE,UART_FIFO_TX2_8,UART_FIFO_RX2_8);
-	ucUART4DelaySendRequest = UART4_INTERVAL_SEND_REQ;
+	_dir_off();
+	eUART4StateRx=STATE_RX_IDLE;
 }
 
 //*-----------------------------------------------------------*/
@@ -142,7 +144,7 @@ void vUART4Handler(void)
 void vUART4PutString(unsigned char *pucStr)
 {
 	// Gui ky tu cho den het chuoi, khi do noi dung = 0.
-	while(*pucStr){UARTCharPut(UART1_BASE, *pucStr++);};
+	while(*pucStr){UARTCharPut(UART4_BASE, *pucStr++);};
 }
 
 
@@ -153,15 +155,14 @@ void vUART4Send(unsigned char ucLen)
 	ucUART4CounterTx=ucLen;
 	ucUART4RdIndexTx=0;
 	_dir_on();
-	while((ucUART4RdIndexTx<16)&(ucUART4CounterTx>0))
+	while((ucUART4RdIndexTx<16)&&(ucUART4CounterTx>0))
 	{
-		UARTCharPutNonBlocking(UART1_BASE, ucUART4FrameTx[ucUART4RdIndexTx]);
+		UARTCharPut(UART4_BASE, ucUART4FrameTx[ucUART4RdIndexTx]);
 		--ucUART4CounterTx;
 		++ucUART4RdIndexTx;
 	}
 
 	// Transmit again.	
-	ucUART4DelayTx = ucUART4IntervalTx; // >=11 character ,baudrate=2500 => 36ms
-	ucUART4DelaySendRequest = UART4_INTERVAL_SEND_REQ;
+	ucUART4DelayTx = 40 ; // >=11 character ,baudrate=2500 => 36ms
 }
 

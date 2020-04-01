@@ -4,7 +4,7 @@
 //----------------------------------------------
 // Cac khai bao thong so
 //----------------------------------------------
-#define TR_UPDATE	300
+#define TR_UPDATE	100
 #define TR_INP		25
 
 #define TR_GONG		1000		// 1s

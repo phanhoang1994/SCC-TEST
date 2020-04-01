@@ -125,6 +125,17 @@ void vPoll(void)
 		vInput();		
 		if(ulInport != ulPreInp){ ulPreInp = ulInport; ulTimerCAN0Tx = 0;}
 		ulTimerInport = TR_INP;
+		ucUART4FrameTx[0]=1;
+		ucUART4FrameTx[1]=2;
+		ucUART4FrameTx[2]=3;
+		ucUART4FrameTx[3]=4;
+		ucUART4FrameTx[4]=5;
+		ucUART4FrameTx[5]=6;
+		ucUART4FrameTx[6]=7;
+		ucUART4FrameTx[7]=8;
+		ucUART4FrameTx[8]=9;
+		ucUART4FrameTx[9]=10;
+		//vUART4Send(10);
 	}
 	
 	pulData = (unsigned long *)ucCAN1InSCE;
