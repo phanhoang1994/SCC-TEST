@@ -5,7 +5,7 @@
 ".\out\startup_rvmdk.o"
 ".\out\function.o"
 ".\out\uart4.o"
-"..\..\THU VIEN TIVAWARE\TivaWare_C_Series-2.1.4.178\driverlib\rvmdk\driverlib.lib"
+".\ti\TivaWare_C_Series-2.1.4.178\driverlib\rvmdk\driverlib.lib"
 --strict --scatter ".\out\SCC210.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

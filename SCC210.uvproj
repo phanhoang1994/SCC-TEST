@@ -364,7 +364,7 @@
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C123AE6PM TARGET_IS_TM4C123_RB1</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\THU VIEN TIVAWARE\TivaWare_C_Series-2.1.4.178</IncludePath>
+              <IncludePath>.\ti\TivaWare_C_Series-2.1.4.178</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -445,7 +445,7 @@
             <File>
               <FileName>driverlib.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\THU VIEN TIVAWARE\TivaWare_C_Series-2.1.4.178\driverlib\rvmdk\driverlib.lib</FilePath>
+              <FilePath>.\ti\TivaWare_C_Series-2.1.4.178\driverlib\rvmdk\driverlib.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -455,22 +455,22 @@
             <File>
               <FileName>can_scc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\can_scc.h</FilePath>
+              <FilePath>.\can_scc.h</FilePath>
             </File>
             <File>
               <FileName>function.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\function.h</FilePath>
+              <FilePath>.\function.h</FilePath>
             </File>
             <File>
               <FileName>global.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\global.h</FilePath>
+              <FilePath>.\global.h</FilePath>
             </File>
             <File>
               <FileName>sysclock.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\sysclock.h</FilePath>
+              <FilePath>.\sysclock.h</FilePath>
             </File>
             <File>
               <FileName>uart4.h</FileName>

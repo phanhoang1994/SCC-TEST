@@ -130,17 +130,6 @@ void vPoll(void)
 	pulData = (unsigned long *)ucCAN1InSCE;
 	ulOutport = *pulData;
 	vOutput();
-	ucUART4FrameTx[0]=0;
-					ucUART4FrameTx[1]=1;
-					ucUART4FrameTx[2]=2;
-					ucUART4FrameTx[3]=3;
-					ucUART4FrameTx[4]=4;
-					ucUART4FrameTx[5]=5;
-					ucUART4FrameTx[6]=6;
-					ucUART4FrameTx[7]=7;
-					ucUART4FrameTx[8]=8;
-					ucUART4FrameTx[9]=9;
-					vUART4Send(10);
 	if(ulTimerCAN0Tx == 0){ vCANSend(); ulTimerCAN0Tx = TR_UPDATE;}	
 }
 

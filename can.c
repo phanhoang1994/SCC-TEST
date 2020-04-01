@@ -16,7 +16,6 @@
 #include "global.h"
 #include "can_scc.h"
 #include "function.h"
-
 #include "driverlib/pin_map.h"
 #include "driverlib/rom.h"
 

@@ -50,8 +50,8 @@ volatile unsigned char ucWDT;
 
 void vWDTHandler(void)
 { 
-	//if(ucWDT == 0){ WatchdogIntClear(WATCHDOG0_BASE);}
-	//ucWDT = 1;
+	if(ucWDT == 0){ WatchdogIntClear(WATCHDOG0_BASE);}
+	ucWDT = 1;
 }
 
 int main(void)
@@ -66,11 +66,11 @@ int main(void)
 
 void vWDTConfig(void)
 {
-    //SysCtlPeripheralEnable(SYSCTL_PERIPH_WDOG0);
-   	//IntEnable(INT_WATCHDOG);
-   //WatchdogReloadSet(WATCHDOG0_BASE, SysCtlClockGet());
-   // WatchdogResetEnable(WATCHDOG0_BASE);
-    //WatchdogEnable(WATCHDOG0_BASE);
+   SysCtlPeripheralEnable(SYSCTL_PERIPH_WDOG0);
+   IntEnable(INT_WATCHDOG);
+   WatchdogReloadSet(WATCHDOG0_BASE, SysCtlClockGet());
+   WatchdogResetEnable(WATCHDOG0_BASE);
+   WatchdogEnable(WATCHDOG0_BASE);
 }
 
 void vHardwareConfig(void)
